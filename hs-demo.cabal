@@ -32,18 +32,71 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , http-client
+    , scotty
+    , text
+    , uuid
+    , wai-extra
   default-language: Haskell2010
 
-executable hs-demo-exe
-  main-is: Main.hs
+executable events-ping
+  main-is: event-handlers/OnPing.hs
   other-modules:
       Paths_hs_demo
-  hs-source-dirs:
-      app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
     , hs-demo
+    , http-client
+    , scotty
+    , text
+    , uuid
+    , wai-extra
+  default-language: Haskell2010
+
+executable events-pong
+  main-is: event-handlers/OnPong.hs
+  other-modules:
+      Paths_hs_demo
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , hs-demo
+    , http-client
+    , scotty
+    , text
+    , uuid
+    , wai-extra
+  default-language: Haskell2010
+
+executable serving-ping
+  main-is: serving-handlers/Ping.hs
+  other-modules:
+      Paths_hs_demo
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , hs-demo
+    , http-client
+    , scotty
+    , text
+    , uuid
+    , wai-extra
+  default-language: Haskell2010
+
+executable serving-pong
+  main-is: serving-handlers/Pong.hs
+  other-modules:
+      Paths_hs_demo
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , hs-demo
+    , http-client
+    , scotty
+    , text
+    , uuid
+    , wai-extra
   default-language: Haskell2010
 
 test-suite hs-demo-test
@@ -57,4 +110,9 @@ test-suite hs-demo-test
   build-depends:
       base >=4.7 && <5
     , hs-demo
+    , http-client
+    , scotty
+    , text
+    , uuid
+    , wai-extra
   default-language: Haskell2010

@@ -1,0 +1,75 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: haskell-fn-serving-ping
+spec:
+  template:
+    spec:
+      containers:
+        - image: kevroletin/haskell-fn-serving-ping
+          ports:
+            - containerPort: 8080
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: haskell-fn-serving-pong
+spec:
+  template:
+    spec:
+      containers:
+        - image: kevroletin/haskell-fn-serving-pong
+          ports:
+            - containerPort: 8080
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: haskell-fn-events-ping
+spec:
+  template:
+    spec:
+      containers:
+        - image: kevroletin/haskell-fn-events-ping
+          ports:
+            - containerPort: 8080
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: haskell-fn-events-pong
+spec:
+  template:
+    spec:
+      containers:
+        - image: kevroletin/haskell-fn-events-pong
+          ports:
+            - containerPort: 8080
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: haskell-fn-events-ping-trigger
+  annotations:
+    knative-eventing-injection: enabled
+spec:
+  broker: example-broker
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: haskell-fn-events-ping
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: haskell-fn-events-pong-trigger
+  annotations:
+    knative-eventing-injection: enabled
+spec:
+  broker: example-broker
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: haskell-fn-events-pong

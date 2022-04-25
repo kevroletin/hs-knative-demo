@@ -21,14 +21,46 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- http-client
+- scotty
+- text
+- wai-extra
+- uuid
 
 library:
   source-dirs: src
 
 executables:
-  hs-demo-exe:
-    main:                Main.hs
-    source-dirs:         app
+  serving-ping:
+    main:                serving-handlers/Ping.hs
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - hs-demo
+
+  serving-pong:
+    main:                serving-handlers/Pong.hs
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - hs-demo
+
+
+  events-ping:
+    main:                event-handlers/OnPing.hs
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - hs-demo
+
+  events-pong:
+    main:                event-handlers/OnPong.hs
     ghc-options:
     - -threaded
     - -rtsopts
