@@ -1,0 +1,11 @@
+FROM kevroletin/hs-demo-build as builder
+FROM debian:buster-slim
+
+ARG EXE_NAME=undefined
+
+COPY --from=builder /root/.local/bin/${EXE_NAME} /root/app-exe
+RUN chmod +x /root/app-exe
+
+EXPOSE 8080
+
+CMD ["/root/app-exe"]

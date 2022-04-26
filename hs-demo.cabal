@@ -25,13 +25,16 @@ source-repository head
 
 library
   exposed-modules:
+      API
       Lib
   other-modules:
       Paths_hs_demo
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
     , http-client
     , scotty
     , text
@@ -45,7 +48,9 @@ executable events-ping
       Paths_hs_demo
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
     , hs-demo
     , http-client
     , scotty
@@ -60,7 +65,9 @@ executable events-pong
       Paths_hs_demo
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
     , hs-demo
     , http-client
     , scotty
@@ -75,7 +82,9 @@ executable serving-ping
       Paths_hs_demo
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
     , hs-demo
     , http-client
     , scotty
@@ -90,7 +99,9 @@ executable serving-pong
       Paths_hs_demo
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
     , hs-demo
     , http-client
     , scotty
@@ -108,7 +119,9 @@ test-suite hs-demo-test
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
     , hs-demo
     , http-client
     , scotty

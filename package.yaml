@@ -26,6 +26,8 @@ dependencies:
 - text
 - wai-extra
 - uuid
+- aeson
+- bytestring
 
 library:
   source-dirs: src

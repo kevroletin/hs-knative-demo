@@ -1,6 +1,3 @@
-FROM ghcr.io/openfaas/of-watchdog:0.9.3 as watchdog
-FROM haskell:8.10.7-slim-buster as builder
-
 FROM debian:buster-slim
 
 ARG EXE_PATH=undefined

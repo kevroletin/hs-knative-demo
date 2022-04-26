@@ -1,0 +1,16 @@
+FROM fpco/stack-build-small:lts-19.5
+
+WORKDIR /app
+
+COPY stack.yaml .
+COPY package.yaml .
+RUN stack build --system-ghc --only-dependencies
+
+# ---
+
+COPY event-handlers event-handlers
+COPY serving-handlers serving-handlers
+COPY src src
+COPY test test
+
+RUN stack install --system-ghc --copy-bins

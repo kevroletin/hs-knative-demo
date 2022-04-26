@@ -54,6 +54,9 @@ metadata:
     knative-eventing-injection: enabled
 spec:
   broker: example-broker
+  filter:
+    attributes:
+      type: ping
   subscriber:
     ref:
       apiVersion: serving.knative.dev/v1
@@ -68,6 +71,9 @@ metadata:
     knative-eventing-injection: enabled
 spec:
   broker: example-broker
+  filter:
+    attributes:
+      type: pong
   subscriber:
     ref:
       apiVersion: serving.knative.dev/v1

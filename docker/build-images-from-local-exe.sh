@@ -5,22 +5,24 @@ set -e
 USER=kevroletin
 PROJECT=haskell-fn
 
-docker build -f docker/Dockerfile.build-all-slim -t kevroletin/hs-demo-build .
+stack build
 
 STACK_LOCAL_BIN=$(stack path --local-install-root)/bin
-
 EXE_LIST=$(stack ide targets 2>&1 | grep 'hs-demo:exe:'| sed -e "s/hs-demo:exe://")
 
 # build
 for i in $EXE_LIST; do
-    echo
-    echo "=== $i ==="
+    REL_PATH=$(realpath --relative-to=. "$STACK_LOCAL_BIN/$i")
 
-    docker build --build-arg "EXE_NAME=$i" -f docker/Dockerfile.from-image -t "$USER/$PROJECT-$i" .
+    echo
+    echo "=== $REL_PATH ==="
+
+    docker build --build-arg "EXE_PATH=$REL_PATH" -f docker/Dockerfile.from-exe -t "$USER/$PROJECT-$i" .
+
 done
 
 # push
-for i in $STACK_LOCAL_BIN/*; do
+for i in $EXE_LIST; do
     docker push "$USER/$PROJECT-$i"
 done
 
